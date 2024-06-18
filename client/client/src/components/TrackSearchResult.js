@@ -1,23 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { Card, Button } from 'react-bootstrap';
 
-const TrackSearchResult = ({track, chooseTrack}) => {
-    function handlePlay() {
-        chooseTrack(track)
-    }
+const TrackSearchResult = ({ track, chooseTrack, addToQueue }) => {
+  const handlePlay = () => {
+    chooseTrack(track);
+  };
+
   return (
-    <div 
-        className = "d-flex m-2 align-items-center"
-        style = {{cursor: "pointer"}}
-        onClick = {handlePlay}
-    
-    >
-        <img src = {track.album} style = {{width: "64px", height: "64px"}} />
-        <div className = "ml-3">
-            <div>{track.title}</div>
-            <div className="text-muted">{track.artist}</div>
-        </div>
-    </div>
-  )
-}
+    <Card className="mb-2">
+      <Card.Img src={track.album} alt={track.title} />
+      <Card.Body>
+        <Card.Title>{track.title}</Card.Title>
+        <Card.Text>{track.artist}</Card.Text>
+        <Button variant="primary" onClick={handlePlay}>Play</Button>
+        <Button variant="secondary" onClick={addToQueue}>Add to Queue</Button>
+      </Card.Body>
+    </Card>
+  );
+};
 
-export default TrackSearchResult
+export default TrackSearchResult;
